@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>JS倒计时，适用活动(天、时、分)</title>
+	</head>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.main {
+			width: 60%;
+			margin: 10% auto;
+			text-align: center;
+			font-size: 30px;
+		}
+	</style>
+<body>
+	<div class="main">
+		距离春节还有：<span id="span"></span>
+	</div>
+	<script>
+		var oSpan = document.getElementById('span');
+		function myTime(){
+			var Time1 = new Date();                 //当前时间
+			var Time2 = new Date(2018,2,15,24,0,0);  //倒计时时间
+			var t = Math.floor((Time2 - Time1)/1000);
+			var str = Math.floor(t/86400)+'天'+toTwo(Math.floor(t%86400/3600))+'时'+toTwo(Math.floor(t%86400%3600/60))+'分'+toTwo(t%60)+'秒';
+			oSpan.innerHTML = str;
+		}
+		myTime();
+
+		function toTwo(n){   //判断当'时分秒'为个位数时，需要前面加0，如01
+		   return n<10?'0'+n:''+n;
+		}
+		setInterval(function(){
+			myTime();
+		},1000);
+	</script>
+	
+</body>
+</html>
